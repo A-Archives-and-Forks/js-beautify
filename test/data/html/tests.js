@@ -1735,6 +1735,9 @@ exports.test_data = {
       }, {
         unchanged: '<span>{{condition < 0 ? "result1" : "result2"}}</span>'
       }, {
+      }, {
+        unchanged: '<span>{{condition1 && condition2 && condition3 && condition4 < 0 ? "resForTrue" : "resForFalse"}}</span>'
+      }, {
         comment: "Issue #2045 - {{#tr}} helper inside a table must not pop the HTML <tr> from the tag stack",
         input_: [
           '<table>',
