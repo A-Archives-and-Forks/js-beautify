@@ -1756,6 +1756,38 @@ exports.test_data = {
           '    </tr>',
           '</table>'
         ]
+      }, {
+        comment: "Issue #2045 - {{#li}} helper inside a list item must not pop the HTML <li> from the tag stack",
+        input_: [
+          '<ul>',
+          '<li>',
+          '{{#li}}item{{/li}}',
+          '</li>',
+          '</ul>'
+        ],
+        output: [
+          '<ul>',
+          '    <li>',
+          '        {{#li}}item{{/li}}',
+          '    </li>',
+          '</ul>'
+        ]
+      }, {
+        comment: "Issue #2045 - {{#option}} helper inside an option must not pop the HTML <option> from the tag stack",
+        input_: [
+          '<select>',
+          '<option>',
+          '{{#option}}text{{/option}}',
+          '</option>',
+          '</select>'
+        ],
+        output: [
+          '<select>',
+          '    <option>',
+          '        {{#option}}text{{/option}}',
+          '    </option>',
+          '</select>'
+        ]
       }
     ]
   }, {
