@@ -1736,6 +1736,58 @@ exports.test_data = {
         unchanged: '<span>{{condition < 0 ? "result1" : "result2"}}</span>'
       }, {
         unchanged: '<span>{{condition1 && condition2 && condition3 && condition4 < 0 ? "resForTrue" : "resForFalse"}}</span>'
+      }, {
+        comment: "Issue #2045 - {{#tr}} helper inside a table must not pop the HTML <tr> from the tag stack",
+        input_: [
+          '<table>',
+          '<tr>',
+          '<td>',
+          '{{#tr}}translated{{/tr}}',
+          '</td>',
+          '</tr>',
+          '</table>'
+        ],
+        output: [
+          '<table>',
+          '    <tr>',
+          '        <td>',
+          '            {{#tr}}translated{{/tr}}',
+          '        </td>',
+          '    </tr>',
+          '</table>'
+        ]
+      }, {
+        comment: "Issue #2045 - {{#li}} helper inside a list item must not pop the HTML <li> from the tag stack",
+        input_: [
+          '<ul>',
+          '<li>',
+          '{{#li}}item{{/li}}',
+          '</li>',
+          '</ul>'
+        ],
+        output: [
+          '<ul>',
+          '    <li>',
+          '        {{#li}}item{{/li}}',
+          '    </li>',
+          '</ul>'
+        ]
+      }, {
+        comment: "Issue #2045 - {{#option}} helper inside an option must not pop the HTML <option> from the tag stack",
+        input_: [
+          '<select>',
+          '<option>',
+          '{{#option}}text{{/option}}',
+          '</option>',
+          '</select>'
+        ],
+        output: [
+          '<select>',
+          '    <option>',
+          '        {{#option}}text{{/option}}',
+          '    </option>',
+          '</select>'
+        ]
       }
     ]
   }, {
